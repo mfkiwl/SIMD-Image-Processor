@@ -1,0 +1,215 @@
+
+/*
+ * CLOCK_50 = clk
+ * KEY[0] = reset
+ * SW = mode
+ */
+
+ /*
+
+module tint(enable, inPixel, outPixel);
+
+parameter n = 8;
+input [0:n-1] inPixel;
+output reg[0:n-1] outPixel;
+
+always @(inPixel)   
+	begin
+	outPixel = inPixel - 64 > 0 ? inPixel - 64 : 0;
+	end
+endmodule
+ 
+ 
+module invert(enable, inPixel, outPixel);
+
+parameter n = 8;
+input [0:n-1] inPixel;
+output [0:n-1] outPixel;
+
+assign outPixel = 255 - inPixel;
+endmodule
+
+
+module threshold(enable, inPixel, outPixel);
+
+parameter n = 8;
+input [0:n-1] inPixel;
+output [0:n-1] outPixel;
+
+assign outPixel = inPixel  > 127 ? 255 : 0;
+endmodule
+ 
+
+module increaseContrast(enable, inPixel, outPixel);
+
+parameter n = 8;
+input [0:n-1] inPixel;
+output reg [0:n-1] outPixel;
+
+always @(*)
+begin
+if(inPixel < 85)
+  outPixel = inPixel / 2;
+  
+else if(inPixel < 171)
+  outPixel = inPixel * 2 - 128;
+  
+else
+  outPixel = inPixel / 2 + 128;
+  
+end
+endmodule
+
+
+*/
+
+
+
+module top(UART_RXD, UART_TXD, CLOCK_50, KEY, SW);
+
+// Declaration of inputs and outputs
+input UART_RXD, CLOCK_50;
+input [0:0] KEY;
+input [1:0] SW;
+output UART_TXD;
+
+parameter RAM_SIZE = 28;
+parameter ADDR_BITS = 5;
+
+wire ready;
+reg start = 0;
+reg nextStart = 0;
+
+wire [7:0] dataOut;	// data that was read
+
+reg [ADDR_BITS:0] addr = 0;	// address we are accessing
+reg [ADDR_BITS:0] nextAddr = 0;
+
+reg writeEnable = 0;
+reg nextWriteEnable = 0;
+reg [7:0] dataIn ;	// data that was written to
+
+// State declarations
+parameter IDLE = 2'b00;
+parameter READ = 2'b01;
+parameter WRITE = 2'b10;
+
+reg [0:1] currState = IDLE;
+reg [0:1] nextState = IDLE;
+
+
+// Sequential part of FSM
+always @ (posedge CLOCK_50, negedge KEY[0])
+begin
+if(~KEY[0])
+	currState <= IDLE;
+
+else if(CLOCK_50)
+	begin
+	currState <= nextState;
+	addr <= nextAddr;
+	writeEnable <= nextWriteEnable;
+	start <= nextStart;
+	end
+end
+
+always @(*)
+begin
+
+nextState = currState;
+nextAddr = addr;
+nextWriteEnable = writeEnable;
+nextStart = start;
+
+case(currState)
+
+IDLE:
+begin
+   nextAddr = 0;
+	nextWriteEnable = 0;
+	nextStart = 0;
+
+	if(ready)
+	begin
+		nextState = READ;
+	end
+end
+  
+
+  
+READ:
+begin
+	nextState = WRITE;
+	nextWriteEnable = 0;
+end
+  
+
+WRITE:
+begin
+
+	if(SW[1:0] == 2'b00)	// TINT FILTER
+	begin
+
+	if(nextAddr < RAM_SIZE)
+		begin
+			dataIn = (dataOut - 64 > 0) ? dataOut - 64 : 0;
+			nextWriteEnable = 1;
+			nextState = READ;
+			nextAddr = addr + 1;
+		end
+	
+	else
+		begin
+			nextState = IDLE;
+			nextStart = 1;
+		end
+	
+	end
+		
+		
+	else if(SW[1:0] == 2'b01)	// INVERT FILTER
+	begin
+	end
+	
+	else if(SW[1:0] == 2'b10)	// THRESHOLD FILTER
+	begin
+	end
+	
+	else if(SW[1:0] == 2'b01)	// INCREASE CONTRAST FILTER
+	begin
+	end
+	
+end
+
+
+endcase
+
+end
+
+
+
+
+
+
+
+
+uart_handler # (RAM_SIZE, ADDR_BITS) uartHandler(.clk(CLOCK_50),
+   .reset(~KEY[0]),
+
+   // RS232 Signals
+   .UART_TX(UART_TXD),
+   .UART_RX(UART_RXD),
+
+   // Interfacing Signals
+   .addr(addr),
+   .writeEnable(writeEnable),
+   .dataIn(dataIn),
+	.dataOut(dataOut),
+
+   // Start and Ready Signals
+   .start(start), 
+	.ready(ready));
+
+
+
+endmodule

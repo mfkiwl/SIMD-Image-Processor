@@ -1,0 +1,6 @@
+Provided files for EEC180B Lab exercist.
+
+Lab6.pdf - Document with the lab description
+rtl      - UART transmitter and receiver verilog
+tb       - Testbench aid for design work
+matlab   - MATLAB scripts and images sets.

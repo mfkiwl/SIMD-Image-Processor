@@ -1,0 +1,22 @@
+C:/Users/sfaruque/Documents/Lab6/rtl/uart.v {1 {vlog -work work C:/Users/sfaruque/Documents/Lab6/rtl/uart.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module uart
+
+Top level modules:
+	uart
+
+} {} {}} C:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v {1 {vlog -work work C:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module uart_handler
+
+Top level modules:
+	uart_handler
+
+} {} {}} C:/Users/sfaruque/Documents/Lab6/tb_lab6.v {1 {vlog -work work C:/Users/sfaruque/Documents/Lab6/tb_lab6.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_lab6
+
+Top level modules:
+	tb_lab6
+
+} {} {}}

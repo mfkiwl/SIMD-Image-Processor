@@ -1,0 +1,54 @@
+
+
+module histogram(dataIn, histAddr, reset, enable, histOut);
+
+input reset, enable;
+input [7:0] dataIn;
+input [2:0] histAddr;
+output reg [15:0] histOut;
+
+reg [15:0] data0, data1, data2, data3, data4, data5, data6, data7;
+
+always @(*)
+begin
+	if (reset)
+	begin
+		data0 = 0; data1 = 0; data2 = 0; data3 = 0; data4 = 0; data5 = 0; data6 = 0; data7 = 0;
+	end
+	
+	if(enable)
+	begin
+		if (dataIn < 31) 
+			data0 = data0 +1;
+		else if (dataIn < 63)
+			data1 = data1 +1;
+		else if (dataIn < 95)
+			data2 = data2 +1;
+		else if (dataIn < 127)
+			data3 = data3 +1;
+		
+		else if (dataIn < 159)
+			data4 = data4 +1;
+		else if (dataIn < 191)
+			data5 = data5 +1;
+		else if (dataIn < 223)
+			data6 = data6 +1;
+		else if (dataIn < 255)
+			data7 = data7 +1;
+
+	end
+	
+	case (histAddr)
+	3'b000: histOut = data0;
+	3'b001:histOut = data1;
+	3'b010:histOut = data2;
+	3'b011:histOut = data3;
+	
+	3'b100:histOut = data4;
+	3'b101:histOut = data5;
+	3'b110:histOut = data6;
+	3'b111:histOut = data7;
+	endcase
+end
+
+endmodule

@@ -1,0 +1,134 @@
+
+// module for 7 segment display
+module hex_7seg(w, seg);
+
+input [3:0] w;
+output reg [0:6] seg;
+
+// constants for segments
+parameter ZERO = 7'b0000001;
+parameter ONE = 7'b1001111;
+parameter TWO = 7'b0010010;
+parameter THREE = 7'b0000110;
+parameter FOUR = 7'b1001100;
+parameter FIVE = 7'b0100100;
+parameter SIX = 7'b0100000;
+parameter SEVEN = 7'b0001111;
+parameter EIGHT = 7'b0000000;
+parameter NINE = 7'b0001100;
+parameter A = 7'b0001000;
+parameter B = 7'b1100000;
+parameter C = 7'b0110001;
+parameter D = 7'b1000010;
+parameter E = 7'b0110000;
+parameter F = 7'b0111000;
+  
+always @(w)
+
+case (w)
+0: seg = ZERO;
+1: seg = ONE;
+2: seg = TWO;
+3: seg = THREE;
+4: seg = FOUR;
+5: seg = FIVE;
+6: seg = SIX;
+7: seg = SEVEN;
+8: seg = EIGHT;
+9: seg = NINE;
+10: seg = A;
+11: seg = B;
+12: seg = C;
+13: seg = D;
+14: seg = E;
+15: seg = F;
+endcase
+endmodule 
+
+
+/*
+ *	Write Enable (for both RAM modules) = SW[17]
+ *	Select RAM module for writing = SW[16]
+ *	Clock = KEY[0]
+ *	Address (for both RAM modules) = SW[13:10]
+ *	Data In (for both RAM modules) = SW[7:0]
+ *	Address Display = HEX6
+ *	Data In Display = HEX5, HEX4
+ *	RAM1 Data Out Display = HEX3, HEX2
+ *	RAM0 Data Out Display = HEX1, HEX0
+ */
+
+// RAM MODULE
+module ramModule(SW, KEY, HEXOut1, HEXOut2);
+
+  input [17:0] SW;
+  input [0:0] KEY;
+  output [0:6] HEXOut1, HEXOut2;
+  reg [5:0] i;
+  
+  (* ramstyle = "M4K" *) reg [7:0] memory [15:0];	// 16 x 8 RAM
+
+  initial	// initialize contents of RAM
+    begin
+      for(i = 0; i < 16; i = i + 1)
+        begin
+          memory[i] <= i;
+        end
+    end
+	 
+  // occurs when positive edge of clock occurs
+  always @ (posedge KEY[0])
+    begin 
+      
+      if(SW[17] == 1 && SW[16] == 1)	// This ram is selected for writing	
+        begin
+          // Write data to memory
+          memory[SW[13:10]] <= SW[7:0];
+        end
+      
+    end
+	 
+ 
+  // HEX DISPLAYS
+  hex_7seg hex1(memory[SW[13:10]][7:4], HEXOut1); // Data Out
+  hex_7seg hex0(memory[SW[13:10]][3:0], HEXOut2); // Data Out
+
+endmodule
+
+
+
+
+
+
+
+/*
+ *	Write Enable (for both RAM modules) = SW[17]
+ *	Select RAM module for writing = SW[16]
+ *	Clock = KEY[0]
+ *	Address (for both RAM modules) = SW[13:10]
+ *	Data In (for both RAM modules) = SW[7:0]
+ *	Address Display = HEX6
+ *	Data In Display = HEX5, HEX4
+ *	RAM1 Data Out Display = HEX3, HEX2
+ *	RAM0 Data Out Display = HEX1, HEX0
+ */
+
+module ram(SW, KEY, HEX6, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0);
+  input [17:0] SW;
+  input KEY;
+  output [0:6] HEX6, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0;
+   
+  ramModule RAM1({SW[17], SW[16], SW[15:0]}, KEY, HEX3, HEX2);
+  ramModule RAM0({SW[17], ~SW[16], SW[15:0]}, KEY, HEX1, HEX0);
+  
+  // HEX DISPLAYS
+  hex_7seg hex6(SW[13:10], HEX6); // Address
+  hex_7seg hex5(SW[7:4], HEX5); // Data In 
+  hex_7seg hex4(SW[3:0], HEX4); // Data In
+ 
+endmodule
+
+
+
+
+

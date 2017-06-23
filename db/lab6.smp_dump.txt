@@ -1,0 +1,23 @@
+
+State Machine - |top|currState
+Name currState.IDLE currState.COMPUTE_HIST_SUM currState.PREPARE_HISTOGRAM currState.SEND_DATA_DISTRIBUTER 
+currState.IDLE 0 0 0 0 
+currState.SEND_DATA_DISTRIBUTER 1 0 0 1 
+currState.PREPARE_HISTOGRAM 1 0 1 0 
+currState.COMPUTE_HIST_SUM 1 1 0 0 
+
+State Machine - |top|Data_Distributer:dataDistributer|state
+Name state.TRANSMIT_DATA state.TRANSMIT_WAIT_FOR_READY state.WAIT_FOR_START state.WRITE_DATA state.RECEIVING_UART state.PREPARE_TO_RECEIVE 
+state.PREPARE_TO_RECEIVE 0 0 0 0 0 0 
+state.RECEIVING_UART 0 0 0 0 1 1 
+state.WRITE_DATA 0 0 0 1 0 1 
+state.WAIT_FOR_START 0 0 1 0 0 1 
+state.TRANSMIT_WAIT_FOR_READY 0 1 0 0 0 1 
+state.TRANSMIT_DATA 1 0 0 0 0 1 
+
+State Machine - |top|Data_Distributer:dataDistributer|uart:u0|rx_state
+Name rx_state.RX_WAIT_FOR_STOP rx_state.RX_RECEIVING rx_state.RX_CHECK_START rx_state.RX_INITIAL_STATE 
+rx_state.RX_INITIAL_STATE 0 0 0 0 
+rx_state.RX_CHECK_START 0 0 1 1 
+rx_state.RX_RECEIVING 0 1 0 1 
+rx_state.RX_WAIT_FOR_STOP 1 0 0 1 

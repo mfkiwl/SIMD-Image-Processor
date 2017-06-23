@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\13.0sp1
+vtb_lab6
+Z1 !s100 98?SJDZ^oJBL9oB8Fan:72
+Z2 ISEX0@X<P3La0HShlBZ14H1
+Z3 VCF<z>MLBLz3ZQ7dSh@<JS0
+Z4 dC:\Users\sfaruque\Documents\Lab6
+Z5 w1488508294
+Z6 8C:/Users/sfaruque/Documents/Lab6/tb_lab6.v
+Z7 FC:/Users/sfaruque/Documents/Lab6/tb_lab6.v
+L0 3
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -reportprogress|300|-work|work|C:/Users/sfaruque/Documents/Lab6/tb_lab6.v|
+Z10 o-work work -O0
+Z11 !s108 1488657021.541000
+Z12 !s107 C:/Users/sfaruque/Documents/Lab6/tb_lab6.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtop
+Z13 IgBa6`PG>ah5d7Wi<R;NHc1
+Z14 V1H>6>i`J`SU19nkoCSI6U3
+R4
+Z15 w1488657010
+Z16 8C:/Users/sfaruque/Documents/Lab6/top.v
+Z17 FC:/Users/sfaruque/Documents/Lab6/top.v
+L0 68
+R8
+r1
+31
+Z18 !s90 -reportprogress|300|-work|work|C:/Users/sfaruque/Documents/Lab6/top.v|
+R10
+Z19 !s100 T=i[G;=bGH`^XTHjMKKdc0
+Z20 !s108 1488657021.438000
+Z21 !s107 C:/Users/sfaruque/Documents/Lab6/top.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vuart
+Z22 !s100 <M3E<A75R6DaBHaHanDna1
+Z23 IDWEa@B<`jB9=07f9J<CeX2
+Z24 VKP]IaLQ9^[fUedamhba1<0
+R4
+Z25 w1488497793
+Z26 8C:/Users/sfaruque/Documents/Lab6/rtl/uart.v
+Z27 FC:/Users/sfaruque/Documents/Lab6/rtl/uart.v
+L0 6
+R8
+r1
+31
+Z28 !s90 -reportprogress|300|-work|work|C:/Users/sfaruque/Documents/Lab6/rtl/uart.v|
+R10
+!i10b 1
+!s85 0
+Z29 !s108 1488657021.658000
+Z30 !s107 C:/Users/sfaruque/Documents/Lab6/rtl/uart.v|
+!s101 -O0
+vuart_handler
+!i10b 1
+Z31 !s100 mR4_U8@M_0K];6dm`U1J:1
+Z32 IogG=>>ncJ?Bz1[Q`>c>nB3
+Z33 V;OM[k:2e;oi=90S`EAARh3
+R4
+R25
+Z34 8C:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v
+Z35 FC:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v
+L0 1
+R8
+r1
+!s85 0
+31
+!s108 1488657021.766000
+!s107 C:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v|
+Z36 !s90 -reportprogress|300|-work|work|C:/Users/sfaruque/Documents/Lab6/rtl/uart_handler.v|
+!s101 -O0
+R10

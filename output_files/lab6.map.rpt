@@ -1,0 +1,845 @@
+Analysis & Synthesis report for lab6
+Sat Mar 18 12:34:49 2017
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |top|currState
+  9. State Machine - |top|Data_Distributer:dataDistributer|state
+ 10. State Machine - |top|Data_Distributer:dataDistributer|uart:u0|rx_state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Registers Packed Into Inferred Megafunctions
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0|altsyncram_ujg1:auto_generated
+ 17. Parameter Settings for User Entity Instance: Top-level Entity: |top
+ 18. Parameter Settings for User Entity Instance: Data_Distributer:dataDistributer
+ 19. Parameter Settings for User Entity Instance: Data_Distributer:dataDistributer|uart:u0
+ 20. Parameter Settings for User Entity Instance: Histogram:HIST[0].H
+ 21. Parameter Settings for User Entity Instance: Histogram:HIST[1].H
+ 22. Parameter Settings for User Entity Instance: Histogram:HIST[2].H
+ 23. Parameter Settings for User Entity Instance: Histogram:HIST[3].H
+ 24. Parameter Settings for Inferred Entity Instance: Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0
+ 25. altsyncram Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "Histogram:HIST[3].H"
+ 27. Port Connectivity Checks: "Histogram:HIST[2].H"
+ 28. Port Connectivity Checks: "Histogram:HIST[1].H"
+ 29. Port Connectivity Checks: "Histogram:HIST[0].H"
+ 30. Port Connectivity Checks: "Data_Distributer:dataDistributer"
+ 31. Elapsed Time Per Partition
+ 32. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                          ;
++------------------------------------+--------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Mar 18 12:34:49 2017            ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Revision Name                      ; lab6                                             ;
+; Top-level Entity Name              ; top                                              ;
+; Family                             ; Cyclone II                                       ;
+; Total logic elements               ; 192                                              ;
+;     Total combinational functions  ; 181                                              ;
+;     Dedicated logic registers      ; 92                                               ;
+; Total registers                    ; 92                                               ;
+; Total pins                         ; 6                                                ;
+; Total virtual pins                 ; 0                                                ;
+; Total memory bits                  ; 0                                                ;
+; Embedded Multiplier 9-bit elements ; 0                                                ;
+; Total PLLs                         ; 0                                                ;
++------------------------------------+--------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; top                ; lab6               ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; rtl/uart.v                       ; yes             ; User Verilog HDL File        ; C:/Users/sfaruque/Documents/Lab6/Lab6/Lab6/rtl/uart.v                   ;         ;
+; top.v                            ; yes             ; User Verilog HDL File        ; C:/Users/sfaruque/Documents/Lab6/Lab6/Lab6/top.v                        ;         ;
+; Data_Distributer.v               ; yes             ; User Verilog HDL File        ; C:/Users/sfaruque/Documents/Lab6/Lab6/Lab6/Data_Distributer.v           ;         ;
+; output_files/Histogram.v         ; yes             ; User Verilog HDL File        ; C:/Users/sfaruque/Documents/Lab6/Lab6/Lab6/output_files/Histogram.v     ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_ujg1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/sfaruque/Documents/Lab6/Lab6/Lab6/db/altsyncram_ujg1.tdf       ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimated Total logic elements              ; 192      ;
+;                                             ;          ;
+; Total combinational functions               ; 181      ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 72       ;
+;     -- 3 input functions                    ; 28       ;
+;     -- <=2 input functions                  ; 81       ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 132      ;
+;     -- arithmetic mode                      ; 49       ;
+;                                             ;          ;
+; Total registers                             ; 92       ;
+;     -- Dedicated logic registers            ; 92       ;
+;     -- I/O registers                        ; 0        ;
+;                                             ;          ;
+; I/O pins                                    ; 6        ;
+; Embedded Multiplier 9-bit elements          ; 0        ;
+; Maximum fan-out node                        ; CLOCK_50 ;
+; Maximum fan-out                             ; 92       ;
+; Total fan-out                               ; 847      ;
+; Average fan-out                             ; 3.04     ;
++---------------------------------------------+----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                              ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
+; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                           ; Library Name ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
+; |top                                  ; 181 (1)           ; 92 (0)       ; 0           ; 0            ; 0       ; 0         ; 6    ; 0            ; |top                                          ; work         ;
+;    |Data_Distributer:dataDistributer| ; 180 (96)          ; 92 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|Data_Distributer:dataDistributer         ; work         ;
+;       |uart:u0|                       ; 84 (84)           ; 55 (55)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|Data_Distributer:dataDistributer|uart:u0 ; work         ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|currState                                                                                                                ;
++---------------------------------+----------------+----------------------------+-----------------------------+---------------------------------+
+; Name                            ; currState.IDLE ; currState.COMPUTE_HIST_SUM ; currState.PREPARE_HISTOGRAM ; currState.SEND_DATA_DISTRIBUTER ;
++---------------------------------+----------------+----------------------------+-----------------------------+---------------------------------+
+; currState.IDLE                  ; 0              ; 0                          ; 0                           ; 0                               ;
+; currState.SEND_DATA_DISTRIBUTER ; 1              ; 0                          ; 0                           ; 1                               ;
+; currState.PREPARE_HISTOGRAM     ; 1              ; 0                          ; 1                           ; 0                               ;
+; currState.COMPUTE_HIST_SUM      ; 1              ; 1                          ; 0                           ; 0                               ;
++---------------------------------+----------------+----------------------------+-----------------------------+---------------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|Data_Distributer:dataDistributer|state                                                                                                                     ;
++-------------------------------+---------------------+-------------------------------+----------------------+------------------+----------------------+--------------------------+
+; Name                          ; state.TRANSMIT_DATA ; state.TRANSMIT_WAIT_FOR_READY ; state.WAIT_FOR_START ; state.WRITE_DATA ; state.RECEIVING_UART ; state.PREPARE_TO_RECEIVE ;
++-------------------------------+---------------------+-------------------------------+----------------------+------------------+----------------------+--------------------------+
+; state.PREPARE_TO_RECEIVE      ; 0                   ; 0                             ; 0                    ; 0                ; 0                    ; 0                        ;
+; state.RECEIVING_UART          ; 0                   ; 0                             ; 0                    ; 0                ; 1                    ; 1                        ;
+; state.WRITE_DATA              ; 0                   ; 0                             ; 0                    ; 1                ; 0                    ; 1                        ;
+; state.WAIT_FOR_START          ; 0                   ; 0                             ; 1                    ; 0                ; 0                    ; 1                        ;
+; state.TRANSMIT_WAIT_FOR_READY ; 0                   ; 1                             ; 0                    ; 0                ; 0                    ; 1                        ;
+; state.TRANSMIT_DATA           ; 1                   ; 0                             ; 0                    ; 0                ; 0                    ; 1                        ;
++-------------------------------+---------------------+-------------------------------+----------------------+------------------+----------------------+--------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|Data_Distributer:dataDistributer|uart:u0|rx_state                                                              ;
++---------------------------+---------------------------+-----------------------+-------------------------+---------------------------+
+; Name                      ; rx_state.RX_WAIT_FOR_STOP ; rx_state.RX_RECEIVING ; rx_state.RX_CHECK_START ; rx_state.RX_INITIAL_STATE ;
++---------------------------+---------------------------+-----------------------+-------------------------+---------------------------+
+; rx_state.RX_INITIAL_STATE ; 0                         ; 0                     ; 0                       ; 0                         ;
+; rx_state.RX_CHECK_START   ; 0                         ; 0                     ; 1                       ; 1                         ;
+; rx_state.RX_RECEIVING     ; 0                         ; 1                     ; 0                       ; 1                         ;
+; rx_state.RX_WAIT_FOR_STOP ; 1                         ; 0                     ; 0                       ; 1                         ;
++---------------------------+---------------------------+-----------------------+-------------------------+---------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                            ;
++----------------------------------------------------------------------+----------------------------------------+
+; Register name                                                        ; Reason for Removal                     ;
++----------------------------------------------------------------------+----------------------------------------+
+; image_data_addr[13]                                                  ; Stuck at GND due to stuck port data_in ;
+; Histogram:HIST[0].H|i[2]                                             ; Merged with Histogram:HIST[0].H|i[1]   ;
+; Histogram:HIST[0].H|i[1]                                             ; Merged with Histogram:HIST[0].H|i[0]   ;
+; Data_Distributer:dataDistributer|image_data_out[0..4]                ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|i_data_in[0..4,8..12,16..20,24..28] ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_data[0..4]               ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|tx_dataBuffer[9]            ; Stuck at VCC due to stuck port data_in ;
+; currState~6                                                          ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|state~3                             ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|state~4                             ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|state~5                             ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_state~6                  ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_state~7                  ; Lost fanout                            ;
+; currState.PREPARE_HISTOGRAM                                          ; Stuck at GND due to stuck port data_in ;
+; histAddr[1..3]                                                       ; Stuck at GND due to stuck port data_in ;
+; histSumCounter[0..4]                                                 ; Stuck at GND due to stuck port data_in ;
+; histSum[0..15]                                                       ; Stuck at GND due to stuck port data_in ;
+; Data_Distributer:dataDistributer|histogram_data_internal[0..15]      ; Stuck at GND due to stuck port data_in ;
+; histAddr[0]                                                          ; Stuck at GND due to stuck port data_in ;
+; currState.COMPUTE_HIST_SUM                                           ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|i_data_in[5,13,21,29]               ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_data[5]                  ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|i_data_in[6,14,22,30]               ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_data[6]                  ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|i_we                                ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|i_data_in[7,15,23,31]               ; Lost fanout                            ;
+; Data_Distributer:dataDistributer|uart:u0|rx_data[7]                  ; Lost fanout                            ;
+; image_data_addr[0]                                                   ; Lost fanout                            ;
+; currState.SEND_DATA_DISTRIBUTER                                      ; Lost fanout                            ;
+; currState.IDLE                                                       ; Lost fanout                            ;
+; image_data_addr[1..12]                                               ; Lost fanout                            ;
+; Total Number of Removed Registers = 114                              ;                                        ;
++----------------------------------------------------------------------+----------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                      ;
++----------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------+
+; Register name                                      ; Reason for Removal        ; Registers Removed due to This Register                                                          ;
++----------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------+
+; Data_Distributer:dataDistributer|image_data_out[0] ; Lost Fanouts              ; Data_Distributer:dataDistributer|i_data_in[0],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[1],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[2],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[3],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[4],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[8],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[9],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[10],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[11],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[12],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[16],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[17],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[18],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[19],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[20],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[24],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[25],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[26],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[27],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[28],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[0],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[1],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[2],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[3],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[4],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[5],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[13],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[21],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[29],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[5],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[6],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[14],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[22],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[30],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[6],                                            ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[7],                                                  ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[15],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[23],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|i_data_in[31],                                                 ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|uart:u0|rx_data[7]                                             ;
+; currState.PREPARE_HISTOGRAM                        ; Stuck at GND              ; histSumCounter[1], histSumCounter[0], histSumCounter[2], histSum[0], histSum[1],                ;
+;                                                    ; due to stuck port data_in ; histSum[2], histSum[3], histSum[4], histSum[5], histSum[6], histSum[7], histSum[8], histSum[9], ;
+;                                                    ;                           ; histSum[15], Data_Distributer:dataDistributer|histogram_data_internal[8],                       ;
+;                                                    ;                           ; image_data_addr[0], currState.SEND_DATA_DISTRIBUTER, currState.IDLE,                            ;
+;                                                    ;                           ; image_data_addr[1], image_data_addr[2], image_data_addr[3], image_data_addr[4]                  ;
+; histAddr[2]                                        ; Stuck at GND              ; Data_Distributer:dataDistributer|histogram_data_internal[1],                                    ;
+;                                                    ; due to stuck port data_in ; Data_Distributer:dataDistributer|histogram_data_internal[2],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[3],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[4],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[5],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[6],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[7],                                    ;
+;                                                    ;                           ; Data_Distributer:dataDistributer|histogram_data_internal[0]                                     ;
+; currState~6                                        ; Lost Fanouts              ; currState.COMPUTE_HIST_SUM, image_data_addr[9], image_data_addr[10],                            ;
+;                                                    ;                           ; image_data_addr[11], image_data_addr[12]                                                        ;
+; image_data_addr[13]                                ; Stuck at GND              ; image_data_addr[6]                                                                              ;
+;                                                    ; due to stuck port data_in ;                                                                                                 ;
++----------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 92    ;
+; Number of registers using Synchronous Clear  ; 33    ;
+; Number of registers using Synchronous Load   ; 25    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 54    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                ;
++-------------------------------------------------------+----------------------------------------------+------+
+; Register Name                                         ; Megafunction                                 ; Type ;
++-------------------------------------------------------+----------------------------------------------+------+
+; Data_Distributer:dataDistributer|image_data_out[5..7] ; Data_Distributer:dataDistributer|i_mem_rtl_0 ; RAM  ;
++-------------------------------------------------------+----------------------------------------------+------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|count[11]         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|tx_sampleCount[1] ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|tx_count[3]       ;
+; 9:1                ; 16 bits   ; 96 LEs        ; 80 LEs               ; 16 LEs                 ; Yes        ; |top|Histogram:HIST[0].H|histOut[4]                             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|tx_dataBuffer[8]  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |top|histAddr[1]                                                ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|rx_sampleCount[2] ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 10 LEs               ; 15 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|uart:u0|rx_count[0]       ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 3 LEs                ; 15 LEs                 ; Yes        ; |top|Data_Distributer:dataDistributer|byte_count[0]             ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |top|Data_Distributer:dataDistributer|h_addr_internal_next      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |top|Histogram:HIST[0].H|i                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |top|Histogram:HIST[0].H|data                                   ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |top|Data_Distributer:dataDistributer|state                     ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |top|Data_Distributer:dataDistributer|uart:u0|rx_state          ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |top|Data_Distributer:dataDistributer|state                     ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |top|Data_Distributer:dataDistributer|uart:u0|rx_state          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Source assignments for Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0|altsyncram_ujg1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                              ;
++---------------------------------+--------------------+------+-------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                               ;
++---------------------------------+--------------------+------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |top ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; numLanes       ; 4     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Data_Distributer:dataDistributer ;
++--------------------+-------+--------------------------------------------------+
+; Parameter Name     ; Value ; Type                                             ;
++--------------------+-------+--------------------------------------------------+
+; NUMBER_OF_PIXELS   ; 16384 ; Signed Integer                                   ;
+; NUMBER_OF_BINS     ; 8     ; Signed Integer                                   ;
+; PIXELS_PER_ADDRESS ; 4     ; Signed Integer                                   ;
++--------------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Data_Distributer:dataDistributer|uart:u0 ;
++----------------+----------+-----------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                      ;
++----------------+----------+-----------------------------------------------------------+
+; CLK_FREQ       ; 50000000 ; Signed Integer                                            ;
+; BAUD           ; 115200   ; Signed Integer                                            ;
++----------------+----------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Histogram:HIST[0].H ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; numBins        ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Histogram:HIST[1].H ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; numBins        ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Histogram:HIST[2].H ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; numBins        ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Histogram:HIST[3].H ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; numBins        ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0 ;
++------------------------------------+----------------------+----------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                         ;
++------------------------------------+----------------------+----------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                      ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                   ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                 ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                 ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                               ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                      ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                      ;
+; WIDTH_A                            ; 3                    ; Untyped                                      ;
+; WIDTHAD_A                          ; 12                   ; Untyped                                      ;
+; NUMWORDS_A                         ; 4096                 ; Untyped                                      ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                      ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                      ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                      ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                      ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                      ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                      ;
+; WIDTH_B                            ; 3                    ; Untyped                                      ;
+; WIDTHAD_B                          ; 12                   ; Untyped                                      ;
+; NUMWORDS_B                         ; 4096                 ; Untyped                                      ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                      ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                      ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                      ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                      ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                      ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                      ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                      ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                      ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                      ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                      ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                      ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                      ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                      ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                      ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                      ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                      ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                                      ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                      ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                      ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                      ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                      ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                      ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                      ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                      ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                      ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                      ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                      ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                      ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                      ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                      ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                      ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                                      ;
+; CBXI_PARAMETER                     ; altsyncram_ujg1      ; Untyped                                      ;
++------------------------------------+----------------------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                    ;
++-------------------------------------------+---------------------------------------------------------+
+; Name                                      ; Value                                                   ;
++-------------------------------------------+---------------------------------------------------------+
+; Number of entity instances                ; 1                                                       ;
+; Entity Instance                           ; Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                               ;
+;     -- WIDTH_A                            ; 3                                                       ;
+;     -- NUMWORDS_A                         ; 4096                                                    ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                            ;
+;     -- WIDTH_B                            ; 3                                                       ;
+;     -- NUMWORDS_B                         ; 4096                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                  ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                            ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                    ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                ;
++-------------------------------------------+---------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Histogram:HIST[3].H"                                                                                                                                                                 ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                                                                          ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; histAddr ; Input  ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; histOut  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                              ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Histogram:HIST[2].H"                                                                                                                                                                 ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                                                                          ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; histAddr ; Input  ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; histOut  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                              ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Histogram:HIST[1].H"                                                                                                                                                                 ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                                                                          ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; histAddr ; Input  ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; histOut  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                              ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Histogram:HIST[0].H"                                                                                                                                                                ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                                                          ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; histAddr ; Input ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Data_Distributer:dataDistributer"                                                                                                                                                                  ;
++-------------------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                    ; Type  ; Severity ; Details                                                                                                                                                                          ;
++-------------------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; histogram_write_address ; Input ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++-------------------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+    Info: Processing started: Sat Mar 18 12:34:46 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab6 -c lab6
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/uart_handler.v
+    Info (12023): Found entity 1: uart_handler
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/uart.v
+    Info (12023): Found entity 1: uart
+Info (12021): Found 1 design units, including 1 entities, in source file top.v
+    Info (12023): Found entity 1: top
+Info (12021): Found 1 design units, including 1 entities, in source file ram.v
+    Info (12023): Found entity 1: ramModule
+Info (12021): Found 1 design units, including 1 entities, in source file data_distributer.v
+    Info (12023): Found entity 1: Data_Distributer
+Info (12021): Found 1 design units, including 1 entities, in source file output_files/histogram.v
+    Info (12023): Found entity 1: Histogram
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(14): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(15): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(32): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(33): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(34): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(35): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(36): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(37): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(38): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(39): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at top.v(40): Parameter Declaration in module "top" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at top.v(28): object "dataIn" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top.v(50): object "histogram_write_address" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top.v(96): object "counter" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top.v(97): object "nextCounter" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at top.v(98): object "count" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at top.v(164): truncated value with size 14 to match size of target (13)
+Warning (10230): Verilog HDL assignment warning at top.v(213): truncated value with size 32 to match size of target (13)
+Warning (10230): Verilog HDL assignment warning at top.v(238): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at top.v(250): truncated value with size 32 to match size of target (5)
+Warning (10270): Verilog HDL Case Statement warning at top.v(169): incomplete case statement has no default case item
+Info (10264): Verilog HDL Case Statement information at top.v(169): all case item expressions in this case statement are onehot
+Warning (10240): Verilog HDL Always Construct warning at top.v(156): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at top.v(156): inferring latch(es) for variable "nextHistSumCounter", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at top.v(156): inferring latch(es) for variable "nextHistSum", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "nextHistSum[0]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[1]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[2]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[3]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[4]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[5]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[6]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[7]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[8]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[9]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[10]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[11]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[12]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[13]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[14]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSum[15]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSumCounter[0]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSumCounter[1]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSumCounter[2]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSumCounter[3]" at top.v(156)
+Info (10041): Inferred latch for "nextHistSumCounter[4]" at top.v(156)
+Info (10041): Inferred latch for "i[0]" at top.v(156)
+Info (10041): Inferred latch for "i[1]" at top.v(156)
+Info (12128): Elaborating entity "Data_Distributer" for hierarchy "Data_Distributer:dataDistributer"
+Warning (10230): Verilog HDL assignment warning at Data_Distributer.v(223): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at Data_Distributer.v(236): truncated value with size 32 to match size of target (12)
+Warning (10230): Verilog HDL assignment warning at Data_Distributer.v(276): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at Data_Distributer.v(280): truncated value with size 32 to match size of target (3)
+Info (12128): Elaborating entity "uart" for hierarchy "Data_Distributer:dataDistributer|uart:u0"
+Warning (10230): Verilog HDL assignment warning at uart.v(109): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart.v(133): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at uart.v(187): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at uart.v(196): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at uart.v(203): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at uart.v(230): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart.v(243): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart.v(254): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at uart.v(258): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart.v(261): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at uart.v(267): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "Histogram" for hierarchy "Histogram:HIST[0].H"
+Warning (10230): Verilog HDL assignment warning at Histogram.v(15): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at Histogram.v(18): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at Histogram.v(29): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at Histogram.v(41): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at Histogram.v(39): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at Histogram.v(74): truncated value with size 32 to match size of target (4)
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "Data_Distributer:dataDistributer|h_mem" is uninferred due to inappropriate RAM size
+Warning (14025): LATCH primitive "nextHistSumCounter[1]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSumCounter[0]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSumCounter[4]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSumCounter[3]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSumCounter[2]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[0]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[1]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[2]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[3]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[4]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[5]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[6]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[7]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[8]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[9]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[10]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[11]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[12]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[13]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[14]" is permanently disabled
+Warning (14025): LATCH primitive "nextHistSum[15]" is permanently disabled
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "Data_Distributer:dataDistributer|i_mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 3
+        Info (286033): Parameter WIDTHAD_A set to 12
+        Info (286033): Parameter NUMWORDS_A set to 4096
+        Info (286033): Parameter WIDTH_B set to 3
+        Info (286033): Parameter WIDTHAD_B set to 12
+        Info (286033): Parameter NUMWORDS_B set to 4096
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+Info (12130): Elaborated megafunction instantiation "Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0"
+Info (12133): Instantiated megafunction "Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "3"
+    Info (12134): Parameter "WIDTHAD_A" = "12"
+    Info (12134): Parameter "NUMWORDS_A" = "4096"
+    Info (12134): Parameter "WIDTH_B" = "3"
+    Info (12134): Parameter "WIDTHAD_B" = "12"
+    Info (12134): Parameter "NUMWORDS_B" = "4096"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ujg1.tdf
+    Info (12023): Found entity 1: altsyncram_ujg1
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0|altsyncram_ujg1:auto_generated|ram_block1a0"
+        Warning (14320): Synthesized away node "Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0|altsyncram_ujg1:auto_generated|ram_block1a1"
+        Warning (14320): Synthesized away node "Data_Distributer:dataDistributer|altsyncram:i_mem_rtl_0|altsyncram_ujg1:auto_generated|ram_block1a2"
+Warning (12241): 5 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (17049): 68 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[0]"
+    Warning (15610): No output dependent on input pin "SW[1]"
+Info (21057): Implemented 199 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 1 output pins
+    Info (21061): Implemented 193 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 75 warnings
+    Info: Peak virtual memory: 470 megabytes
+    Info: Processing ended: Sat Mar 18 12:34:49 2017
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
+
+
